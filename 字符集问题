@@ -1,0 +1,23 @@
+#建了个表
+create database pymysql_text;
+use pymysql_text;
+create table student1(
+ id int, -- 编号
+ name varchar(20), -- 姓名
+ age int, -- 年龄
+ sex varchar(5), -- 性别
+ address varchar(100), -- 地址
+ math int, -- 数学
+ english int -- 英语
+); 
+
+#插入一条信息
+insert into student1 values (001,'jack',25,'男','杭州',89,56);
+
+#报错
+Incorrect string value: '\xE7\x94\xB7' for column `pymysql_text`.`student1`.`sex` at row 1
+
+#检查
+show create table 数据库名.表名；
+
+#结果如下
