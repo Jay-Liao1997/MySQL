@@ -21,3 +21,30 @@ Incorrect string value: '\xE7\x94\xB7' for column `pymysql_text`.`student1`.`sex
 show create table 数据库名.表名；
 
 #结果如下
+| student1 | CREATE TABLE `student1` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(20)， 
+  `age` int(11) DEFAULT NULL,
+  `sex` varchar(5)， 
+  `address` varchar(100) ，
+  `math` int(11) DEFAULT NULL,
+  `english` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=Latin1 |
+
+#看到默认字符集是Latin1，要进行修改
+alter table 数据库名.表名 default character set utf8;
+
+#修改后再次查看
+| student1 | CREATE TABLE `student1` (
+  `id` int(11) DEFAULT NULL,
+  `name` varchar(20) CHARACTER SET latin1 DEFAULT NULL,
+  `age` int(11) DEFAULT NULL,
+  `sex` varchar(5) CHARACTER SET latin1 DEFAULT NULL,
+  `address` varchar(100) CHARACTER SET latin1 DEFAULT NULL,
+  `math` int(11) DEFAULT NULL,
+  `english` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 |
+发现几个varchar变成Latin1
+
+#修改列表的字符集
+
