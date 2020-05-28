@@ -1,0 +1,4 @@
+#2020528
+今天创建两个表，其中加了外键约束，一直报错
+Can't create table `book_system`.`borrewRecord` (errno: 150 "Foreign key constraint is incorrectly formed")
+后来发现是 参照外键的两个字段的类型没有一致
