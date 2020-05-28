@@ -1,4 +1,8 @@
 #2020528
-今天创建两个表，其中加了外键约束，一直报错
+今天创建两个表，其中加了外键约束，一直报错：
 Can't create table `book_system`.`borrewRecord` (errno: 150 "Foreign key constraint is incorrectly formed")
-后来发现是 参照外键的两个字段的类型没有一致
+后来发现是 参照外键的两个字段的类型没有一致。
+在后来发现，也不是类型的问题，而是字符集编码的问题，两个表的字符集默认编码不一样。。。
+下次建数据库一定要设置utf8。。。。。。。。
+顺便复习一下外键的语句  在创建表时就添加：constraint 外键名 foreign key (本表字段名) references 参考的表（被参考的字段）
+                      建表后添加： alter table 表名 add constraint 外键名 foreign key (本表字段名) references 参考的表（被参考的字段）
