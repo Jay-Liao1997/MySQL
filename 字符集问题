@@ -47,11 +47,12 @@ alter table 数据库名.表名 default character set utf8;
 发现几个varchar变成Latin1
 
 #把表默认的字符集和所有字符列改为新的字符集
-alter table student1 convert to character set utf8 collate utf8_general_ci;
+alter table student1 convert to character set utf8 collate utf8_general_ci;(刚报错时直接执行这一条就可以了。)
 
 #再次查看，已将改成了utf8，插入语句也成功执行
 
 #总结：为了免此类问题，应该在建数据库就设置好 utf8；
+create database if not exists 数据库名 default character set = 'utf8';
 
 
 ############################################################################################
