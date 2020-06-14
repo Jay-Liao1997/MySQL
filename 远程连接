@@ -8,7 +8,7 @@ Lost connection to MySQL server at 'Handshake :reading initial communication pac
 服务器的数据库还没有设密码，直接回车进去，修改密码：update mysql.user set password=PASSWORD('123456') where user='root'；
 修改密码后还不会生效，即使退出重新登录。需要在改密码后进行，flush privileges,才会生效。
 
-修改密码后赋予权限：GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY  WITH GRANT OPTION;
+修改密码后赋予权限：GRANT ALL PRIVILEGES ON *.* TO 'root'@'%' IDENTIFIED BY ‘密码’ WITH GRANT OPTION;
 
 再次进入SQLyog进行登录，依然报错，但是已经不是一开始的错误，显示password，然后我输入数据库的密码，就成功登录了，说明需要的不是阿里云服务器的密码。
 
