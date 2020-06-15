@@ -1,0 +1,5 @@
+#问题：sqlyog无法远程连接centos上的数据库
+
+#首先确认centos上的MySQL服务是否开启 netstat -anp |grep mysql,显示 listened 端口号为3306,
+#其次赋予root远程连接的权限：grant all privileges on *.*to root@"centos 的ip" identified with "连接密码";(大概是这句）
+#最后要确认关闭centos上的防火墙 ： systemctl stop firewall
