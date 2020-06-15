@@ -1,4 +1,4 @@
-#2020528
+#20200528
 今天创建两个表，其中加了外键约束，一直报错：
 Can't create table `book_system`.`borrewRecord` (errno: 150 "Foreign key constraint is incorrectly formed")
 后来发现是 参照外键的两个字段的类型没有一致。
@@ -6,3 +6,20 @@ Can't create table `book_system`.`borrewRecord` (errno: 150 "Foreign key constra
 下次建数据库一定要设置utf8。。。。。。。。
 顺便复习一下外键的语句  在创建表时就添加：constraint 外键名 foreign key (本表字段名) references 参考的表（被参考的字段）
                       建表后添加： alter table 表名 add constraint 外键名 foreign key (本表字段名) references 参考的表（被参考的字段）
+
+
+#20200615
+mysql> select cno,avg(degree) from score where cno like '3-105' or cno like '3%%';
+报错：ERROR 1140 (42000): In aggregated query without GROUP BY,
+      expression #1 of SELECT list contains nonaggregated column 'testmysql.score.cno';
+      this is incompatible with sql_mode=only_full_group_by
+      
+这个错误的中文翻译：
+在不使用group by 子句的聚合查询中，Select列表中的第一个表达式包含了非聚合的列‘school.student.s_id’；当sql_mode为only_full_group_by时，是不能出现这种情况的。
+错误信息里面说student.s_id 这一列是非聚合的,可能指的是没使用聚合函数，果不其然，当我在student.s_id前面加上max的时候，就可以正常执行了
+也就是说，mysql的sql_mode是only_full_group_by的时候，在不使用group by 并且select后面出现聚集函数的话，那么所有被select的都应该是聚集函数，否则就会报错
+
+解决：
+需要重启mysql服务
+编辑/etc/my.cnf文件，加入如下参数，重启mysql
+sql_mode = "STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION,NO_ZERO_DATE,NO_ZERO_IN_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_AUTO_CREATE_USER"
