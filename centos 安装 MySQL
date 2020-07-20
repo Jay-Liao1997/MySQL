@@ -15,7 +15,7 @@ rpm -ivh mysql57-community-release-el7-9.noarch.rpm
 注意：必须进入到 /etc/yum.repos.d/目录后再执行以下脚本
 
 1、安装命令：
-yum install mysql-server
+yum install mysql-server mysql
 
 2、启动msyql：
 systemctl start mysqld #启动MySQL
